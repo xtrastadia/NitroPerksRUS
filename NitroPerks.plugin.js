@@ -1,9 +1,9 @@
 /**
  * @name NitroPerks
- * @author Riolubruh
- * @version 3.1.6
- * @source https://github.com/riolubruh/NitroPerks
- * @updateUrl https://raw.githubusercontent.com/riolubruh/NitroPerks/main/NitroPerks.plugin.js
+ * @author 0xDub
+ * @version 1.0.0 RUS
+ * @source https://github.com/xtrastadia/NitroPerksRUS
+ * @updateUrl https://raw.githubusercontent.com/xtrastadia/NitroPerksRUS/main/NitroPerks.plugin.js
  */
 /*@cc_on
 @if (@_jscript)
@@ -33,14 +33,14 @@ module.exports = (() => {
         "info": {
             "name": "NitroPerks",
             "authors": [{
-                "name": "lemons & Riolubruh",
-                "discord_id": "359063827091816448",
-                "github_username": "riolubruh"
+                "name": "0xDub",
+                "discord_id": "407010427667742720",
+                "github_username": "xtrastadia"
             }],
             "version": "3.1.6",
-            "description": "Unlock all screensharing modes, and use cross-server emotes & gif emotes, Discord wide! (You CANNOT upload 100MB files though. :/)",
-            "github": "https://github.com/riolubruh/NitroPerks",
-            "github_raw": "https://raw.githubusercontent.com/riolubruh/NitroPerks/main/NitroPerks.plugin.js"
+            "description": "Разблокируйет все режимы демонстрации экрана и использование межсерверных эмоций и gif-эмоций по всему Discord! (Однако вы НЕ МОЖЕТЕ загружать файлы размером 100 МБ. :/)",
+            "github": "https://github.com/xtrastadia/NitroPerksRUS",
+            "github_raw": "https://raw.githubusercontent.com/xtrastadia/NitroPerksRUS/main/NitroPerks.plugin.jss"
         },
         "main": "NitroPerks.plugin.js"
     };
@@ -101,25 +101,25 @@ module.exports = (() => {
                 originalNitroStatus = 0;
                 getSettingsPanel() {
                     return Settings.SettingPanel.build(_ => this.saveAndUpdate(), ...[
-                        new Settings.SettingGroup("Features").append(...[
-                            new Settings.Switch("High Quality Screensharing", "1080p/source @ 60fps screensharing. There is no reason to disable this, especially because it doesn't actually do anything if you do.", this.settings.screenSharing, value => this.settings.screenSharing = value),
-							new Settings.Switch("FreeStickers Compatibility Mode", "Enable if you are using FreeStickers. This will lock Source resolution when screensharing, but FreeStickers will work.", this.settings.freeStickersCompat, value => this.settings.freeStickersCompat = value)
+                        new Settings.SettingGroup("Функции").append(...[
+                            new Settings.Switch("High Quality Screensharing", "1080p/исходное @ 60fps трансляции. Нет причин отключать этот параметр, особенно потому, что он ничего не делает, если вы это сделаете.", this.settings.screenSharing, value => this.settings.screenSharing = value),
+							new Settings.Switch("FreeStickers Compatibility Mode", "Включите, если вы используете бесплатные стикеры. Это заблокирует исходное разрешение демонстрации экрана, но бесплатные стикеры будут работать.", this.settings.freeStickersCompat, value => this.settings.freeStickersCompat = value)
                         ]),
-                        new Settings.SettingGroup("Emojis").append(
-                            new Settings.Switch("Nitro Emotes Bypass", "Enable or disable using the emoji bypass.", this.settings.emojiBypass, value => this.settings.emojiBypass = value),
-                            new Settings.Slider("Size", "The size of the emoji in pixels. 48 is the default.", 16, 128, this.settings.emojiSize, size=>this.settings.emojiSize = size, {markers:[16,32,48,64,80,96,112,128], stickToMarkers:true}), //made slider wider and have more options
-							new Settings.Switch("Ghost Mode", "Abuses ghost message bug to hide the emoji url. Will not appear to work to those on the Android app.", this.settings.ghostMode, value => this.settings.ghostMode = value),
-							new Settings.Switch("Don't Use Emote Bypass if Emote is Unlocked", "Disable to use emoji bypass even if bypass is not required for that emoji.", this.settings.emojiBypassForValidEmoji, value => this.settings.emojiBypassForValidEmoji = value),
-							new Settings.Switch("Use PNG instead of WEBP", "Use the PNG version of emoji for higher quality!", this.settings.PNGemote, value => this.settings.PNGemote = value)
+                        new Settings.SettingGroup("Эмодзи").append(
+                            new Settings.Switch("Nitro Emotes Bypass", "Включить или отключить использование обхода эмодзи.", this.settings.emojiBypass, value => this.settings.emojiBypass = value),
+                            new Settings.Slider("Size", "Размер эмодзи в пикселях. Значение по умолчанию равно 48.", 16, 128, this.settings.emojiSize, size=>this.settings.emojiSize = size, {markers:[16,32,48,64,80,96,112,128], stickToMarkers:true}), //made slider wider and have more options
+							new Settings.Switch("Ghost Mode", "Использует ошибку с призрачным сообщением, чтобы скрыть URL-адрес эмодзи. Не будет отображаться для тех, кто работает в приложении для Android.", this.settings.ghostMode, value => this.settings.ghostMode = value),
+							new Settings.Switch("Don't Use Emote Bypass if Emote is Unlocked", "Отключите использование обхода эмодзи, даже если для этого эмодзи обход не требуется.", this.settings.emojiBypassForValidEmoji, value => this.settings.emojiBypassForValidEmoji = value),
+							new Settings.Switch("Use PNG instead of WEBP", "Используйет PNG-версию эмодзи для более высокого качества!", this.settings.PNGemote, value => this.settings.PNGemote = value)
 						),
-                            new Settings.SettingGroup("Profile Picture").append(...[
-                                new Settings.Switch("Clientsided Profile Picture", "**Has been removed; try EditUsers plugin.** (Enable or disable clientsided profile pictures.)", this.settings.clientsidePfp, value => this.settings.clientsidePfp = value),
+                            new Settings.SettingGroup("Изображение профиля").append(...[
+                                new Settings.Switch("Clientsided Profile Picture", "**Был удален; попробуйте плагин EditUsers.** (Включение или отключение изображения профиля на стороне клиента.)", this.settings.clientsidePfp, value => this.settings.clientsidePfp = value),
                                 new Settings.Textbox("URL", "The direct URL that has the profile picture you want.", this.settings.pfpUrl,
                                     image => {
                                         try {
                                             new URL(image)
                                         } catch {
-                                            return Toasts.error('This is an invalid URL!')
+                                            return Toasts.error('Неверный URL!')
                                         }
                                         this.settings.pfpUrl = image
                                     }
