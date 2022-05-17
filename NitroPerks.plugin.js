@@ -37,7 +37,7 @@ module.exports = (() => {
                 "discord_id": "407010427667742720",
                 "github_username": "xtrastadia"
             }],
-            "version": "3.1.6",
+            "version": "1.0.0",
             "description": "Разблокируйет все режимы демонстрации экрана и использование межсерверных эмоций и gif-эмоций по всему Discord! (Однако вы НЕ МОЖЕТЕ загружать файлы размером 100 МБ. :/)",
             "github": "https://github.com/xtrastadia/NitroPerksRUS",
             "github_raw": "https://raw.githubusercontent.com/xtrastadia/NitroPerksRUS/main/NitroPerks.plugin.jss"
